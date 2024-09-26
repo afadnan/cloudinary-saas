@@ -14,6 +14,48 @@ const socialFormats = {
 type SocialFormat = keyof typeof socialFormats;
 
 export default function SocialShare () {
+  const [uploadedImage,setUploadedImage] = useState<string | null>(null);
+  const [selectedFormat,setSelectedFormat] = useState<SocialFormat>("Instagram Square (1:1)");
+  const [isUploading,setIsUploading] = useState(false);
+  const [isTransforming,setISTransforming] = useState(false);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    if(uploadedImage){
+      setISTransforming(true);
+    }
+  },[selectedFormat,uploadedImage])
+  
+  const handleFileUpload = async (event:React.
+    ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if(!file) return;
+    setIsUploading(true);
+    const formData = new FormData();
+    formData.append("file",file);
+    try {
+      const response = await fetch("/api/image-upload",{
+        method:"POST",
+        body:formData
+      })
+
+      if(!response.ok) throw new Error("Failed to upload image");
+
+      const data = await response.json();
+      setUploadedImage(data.publicId);
+
+      
+    } catch (error) {
+      console.log(error);
+      alert("Failed to upload image")
+      
+    }finally{
+      setIsUploading(false);
+    }
+
+  }
+
+
   return (
     <div>SocialShare</div>
   )
