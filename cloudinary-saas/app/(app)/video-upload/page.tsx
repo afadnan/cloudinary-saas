@@ -24,6 +24,13 @@ const handleSubmit = async (e:React.FormEvent) => {
     return;
   }
 
+  setIsUploading(true)
+  const formData = new FormData();
+  formData.append('file',file);
+  formData.append('title',title);
+  formData.append('description',description);
+  formData.append('originalSize',file.size.toString());
+
 }
 
 
