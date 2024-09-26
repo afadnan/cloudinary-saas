@@ -31,6 +31,16 @@ const handleSubmit = async (e:React.FormEvent) => {
   formData.append('description',description);
   formData.append('originalSize',file.size.toString());
 
+  try {
+    const response = await axios.post("/api/video-upload",formData)
+    
+  } catch (error) {
+    console.log(error)
+    
+  }finally{
+    setIsUploading(false)
+  }
+
 }
 
 
