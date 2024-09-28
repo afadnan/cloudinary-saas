@@ -50,9 +50,45 @@ import {
                             <MenuIcon/>
                         </label>
                     </div>
-                    
+                    <div className="flex-1">
+                        <Link href="/" onClick={handleLogoClick}>
+                        <div className="btn btn-ghost normal-case text-2xl font-bold tracking-tight cursor-pointer">Cloudinary Showcase  </div>
+                        </Link>
+                    </div> 
+                    {/* user found */}
+                    {/*  
+                    <div className="flex-none flex items-center space-x-4">
+                        {user && (<>
+                        <div className="avatar">
+                            <div className="w-8 h-8 rounded-full">
+                                <img src={user.imageUrl} alt={user.username ||user.emailAddresses[0].emailAddress
+                                  } />
+                            </div>
+                        </div>
+                        <span className="text-sm truncate max-w-xs lg:max-w-md">
+                            {user.username ||user.emailAddresses[0].emailAddress}
+                        </span>
+                        
+                        <button  onClick={handleSignOut} className="btn btn-ghost btn-circle"  >
+                            <LogOutIcon className="h-6 w-6" />
+                        </button>
+                        </>)}
+                    </div>
+                    */}
                 </div>
             </header>
+
+            {/* {page content} */}
+            <main className="flex-grow">
+                <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 my-8">
+                    {children}
+                </div>
+            </main>
+            
+            </div>
+            <div className="drawer-side">
+                <label htmlFor="siebar-drawer " className="drawer-overlay"></label>
+            
             </div>
         </div>
     )
