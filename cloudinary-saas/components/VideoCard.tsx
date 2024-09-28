@@ -11,7 +11,40 @@ interface VideoCardProps {
   onDownload : (url:string,title:string)=> void;
 }
 
-const VideoCard = () => {
+const VideoCard:React.FC<VideoCardProps> = ({ video ,onDownload}) => {
+  const [isHovered,setIsHovered] = useState(false);
+  const [previewError,setPreviewError] = useState(false);
+
+  const getThembnaiUrl = useCallback((publicId:string)=> {
+    return getCldImageUrl({
+      src:publicId,
+      width:400,                                                                           
+      height:255,
+      crop:'fill',
+      gravity:'auto',
+      format:'jpg',
+      quality:'auto',
+      assetType:'video'
+    })        
+  },[])
+
+  const getFullVideoUrl = useCallback((publicId:string)=> {
+    return getCldVideoUrl({
+      src:publicId,
+      width:1920,                                                                           
+      height:1080,
+    }) 
+  },[])
+  
+  const getPreviweVideoUrl = useCallback((publicId:string)=> {
+    return getCldVideoUrl({
+      src:publicId,
+      width:400,                                                                           
+      height:255,
+      rawTransformations:["e_preview: duration_15: max_seq_9:min_seq_dur_1"]
+    }) 
+  },[])
+  
   return (
     <div>VideoCard</div>
   )
