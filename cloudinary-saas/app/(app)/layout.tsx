@@ -75,7 +75,7 @@ import {
                             </div>
                         </div>
                         <span className="text-sm truncate max-w-xs lg:max-w-md">
-                            {user.username ||user.emailAddresses[0].emailAddress}
+                            {user.fullName || user.username ||user.emailAddresses[0].emailAddress}
                         </span>
                         
                         <button  onClick={handleSignOut} className="btn btn-ghost btn-circle"  >
