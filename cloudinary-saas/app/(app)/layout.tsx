@@ -1,4 +1,4 @@
-
+"use client"
 
 import React,{useState } from "react";
 import Link from "next/link";
@@ -88,7 +88,35 @@ import {
             </div>
             <div className="drawer-side">
                 <label htmlFor="siebar-drawer " className="drawer-overlay"></label>
-            
+            <aside className="bg-base-200 w-64 h-full flex flex-col">
+                <div className="flex items-center jutify-center py-4">
+                    <ImageIcon className="w-10 h-10 text-primary "/>
+                </div>
+                <ul className="menu p-4 w-full text-base-content flex-grow">
+                    {sidebarItems.map((item) => (
+                        <li key={item.herf} className="mb-2">
+                            <Link href= {item.herf}
+                            className={`flex items-center space-x-4 px-4 py-2 rounded-lg ${ pathname === item.herf ? "bg-primary text-white" : "hover:bg-base-300"}`}
+                        onClick={() => setSidebarOpen(false)}
+                        >
+                            <item.icon className="w-6 h-6" />
+                        <span>{item.label}</span>
+                        </Link>
+                        </li>
+                    ))}
+                </ul>
+                {/*  
+                {user && (
+                    <div className="p-4">
+                        <button onClick={handleSignOut}
+                        className="btn btn-outline btn-error w-full" >
+                            <LogOutIcon className="mr-2 h-5 w-5" />
+                            Sign Out
+                        </button>
+                    </div>
+                )}
+                    */}
+            </aside>
             </div>
         </div>
     )
