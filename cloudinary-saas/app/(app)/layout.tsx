@@ -26,6 +26,8 @@ import {
     const pathname= usePathname();
     const router = useRouter();
     const {signOut} = useClerk();
+    const { user } = useUser(); // Get the current user
+
 
     const handleLogoClick = () => {
         router.push("/");
@@ -34,6 +36,12 @@ import {
     const handleSignOut = async () => {
         await signOut();
     };
+
+    // Log the user to the console
+    React.useEffect(() => {
+        console.log(user);
+    }, [user]);
+    
 
     return (
         <div className="drawer lg:drawer-open">
@@ -54,10 +62,11 @@ import {
                         <Link href="/" onClick={handleLogoClick}>
                         <div className="btn btn-ghost normal-case text-2xl font-bold tracking-tight cursor-pointer">Cloudinary Showcase  </div>
                         </Link>
-                    </div> 
-                    {/* user found */}
-                    {/*  
+                    </div>
+                     
+                    
                     <div className="flex-none flex items-center space-x-4">
+                    
                         {user && (<>
                         <div className="avatar">
                             <div className="w-8 h-8 rounded-full">
@@ -74,12 +83,13 @@ import {
                         </button>
                         </>)}
                     </div>
-                    */}
+                    
                 </div>
             </header>
 
             {/* {page content} */}
             <main className="flex-grow">
+            
                 <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 my-8">
                     {children}
                 </div>
@@ -105,7 +115,7 @@ import {
                         </li>
                     ))}
                 </ul>
-                {/*  
+                
                 {user && (
                     <div className="p-4">
                         <button onClick={handleSignOut}
@@ -115,7 +125,7 @@ import {
                         </button>
                     </div>
                 )}
-                    */}
+                
             </aside>
             </div>
         </div>
