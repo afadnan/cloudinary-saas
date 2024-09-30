@@ -23,8 +23,32 @@ const Home = () => {
         console.log(error);
         setError("Failed to fetch videos")
         
+      }finally {
+        setLoading(false)
       }
     },[]) 
+    //rerender
+    useEffect(() => {
+      fetchVideos()
+    },[fetchVideos]) //set dependencie
+
+    const handleDownload = useCallback((url:string,title:string) => {
+      () => {
+      
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", `${title}.mp4`);
+          link.setAttribute("target","_blank");
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        
+      }
+    },[])
+
+    if(loading) {
+      return <div>Loding...</div>
+    }
 
   return (
     <div>Home</div>
