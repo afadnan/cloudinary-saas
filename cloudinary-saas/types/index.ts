@@ -5,6 +5,7 @@ export interface Video {
     publicId:string
     originalSize: number
     compressedSize:number
-    duraation:number
-    createdAt:Date
+    duration:number
+    createdAt:string
+    
 }

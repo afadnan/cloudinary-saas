@@ -17,6 +17,7 @@ interface VideoCardProps {
     originalSize: number;
     compressedSize: number;
   };
+  
   onDownload: (url: string, title: string) => void;
 }
 
